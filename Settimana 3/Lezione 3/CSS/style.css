@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #2a5b35;
+    margin: 0;
+    padding: 20px;
+    color: #000000;
+}
+
+#board, #miniBoard {
+    display: grid;
+    gap: 5px;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+#board {
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(8, 50px);
+}
+
+#miniBoard {
+    grid-template-columns: repeat(6, 50px);
+    grid-template-rows: repeat(4, 50px);
+}
+
+.cell {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #4e9961;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    text-align: center;
+    cursor: default;
+    color: white;
+}
+
+.cell.highlighted {
+    background-color: #7abaa7;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #a3cbb9;
+    color: #000000;
+    margin-top: 10px; 
+}
+
+button:hover {
+    background-color: #448ba8;
+}
+
+#drawButton {
+    margin-bottom: 10px; 
+}
