@@ -35,6 +35,8 @@ body {
     padding: 10px;
     text-align: center;
     flex: 1; /* Occupa lo spazio rimanente */
+    padding-top: 1em;
+    padding-bottom: 2em;
 }
 
 .description-part1,
@@ -58,6 +60,9 @@ body {
 
 .description-part2 {
     color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button-container {
