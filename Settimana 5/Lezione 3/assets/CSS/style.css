@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 40%;
+    height: 60%;
+    background-color: rgb(252, 252, 199);
+    border-radius: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%; /* Usiamo il 100% per occupare tutto lo spazio disponibile */
+    padding: 20px; /* Aggiungiamo un padding per spaziare meglio gli elementi */
+}
+
+.image {
+    width: 120%; /* Usiamo il 100% per occupare tutto lo spazio disponibile */
+    height: 70%;
+    object-fit: cover;
+    border-radius: 110px 110px 0 0; /* Arrotondamento solo sugli angoli superiori */
+}
+
+.description {
+    text-align: center;
+    flex-grow: 1; /* La descrizione occupa tutto lo spazio rimanente */
+}
+
+button {
+    background-color: yellow;
+    color: black;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px 20px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 30px; /* Applichiamo un arrotondamento ai bordi del bottone */
+    transition: background-color 0.3s;
+}
