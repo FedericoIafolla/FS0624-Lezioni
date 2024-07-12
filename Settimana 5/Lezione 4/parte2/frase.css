@@ -51,6 +51,6 @@ body {
 }
 
 @keyframes rotateWords {
-    0%, 20%, 100% { opacity: 0; }
-    25%, 75% { opacity: 1; }
+    0%, 22%, 100% { opacity: 0; }
+    22%, 44% { opacity: 1; }
 }
