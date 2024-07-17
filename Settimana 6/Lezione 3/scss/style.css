@@ -1,0 +1,119 @@
+body {
+  font-family: "Copperplate Gothic", sans-serif;
+  color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #640fc5;
+  color: #f4f4f4;
+}
+.navbar .logo img {
+  max-height: 100px;
+}
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+}
+.navbar .nav-links li {
+  margin-left: 20px;
+}
+.navbar .nav-links li a {
+  color: #f4f4f4;
+  text-decoration: none;
+}
+.navbar .nav-links li a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  padding: 50px 30px;
+  background-color: #640fc5;
+}
+.hero .hero-content {
+  flex: 1;
+}
+.hero .hero-content h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.hero .hero-content p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+.hero .hero-content .buttons .btn {
+  background-color: #0e6cff;
+  border: none;
+  padding: 10px 20px;
+  color: #f4f4f4;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+.hero .hero-content .buttons .btn:hover {
+  transform: scale(1.1);
+}
+.hero .hero-content .buttons .btn.btn-secondary {
+  background-color: #ff8700;
+  border: none;
+  padding: 10px 20px;
+  color: #f4f4f4;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.hero .hero-content .buttons .btn.btn-secondary:hover {
+  transform: scale(1.1);
+}
+.hero .hero-content .buttons .btn.btn-tertiary {
+  background-color: #4caf50;
+  border: none;
+  padding: 10px 20px;
+  color: #f4f4f4;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.hero .hero-content .buttons .btn.btn-tertiary:hover {
+  transform: scale(1.1);
+}
+.hero .hero-image {
+  flex: 1;
+}
+.hero .hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 30px;
+  background-color: #ffffff;
+}
+.image-grid .grid-item {
+  background-color: #ffffff;
+  padding: 10px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+.image-grid .grid-item img {
+  max-width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}/*# sourceMappingURL=style.css.map */

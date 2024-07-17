@@ -1,0 +1,150 @@
+// Variables
+$primary-color: #0e6cff;
+$secondary-color: #ff8700;
+$tertiary-color: #4caf50;
+$hero-bg-color: #640fc5;
+$grid-bg-color: #ffffff;
+$text-color: #f4f4f4;
+$nav-text-color: #f4f4f4; // Nav specific text color, changed to match $text-color
+
+// Font variables
+$font-family: 'Copperplate Gothic', sans-serif;
+$font-size-small: 0.875rem;
+$font-size-medium: 1rem;
+$font-size-large: 1.25rem;
+$font-size-xlarge: 2rem;
+
+// Mixins
+@mixin button-style($bg-color) {
+  background-color: $bg-color;
+  border: none;
+  padding: 10px 20px;
+  color: $text-color;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@mixin title-big {
+  font-size: $font-size-xlarge;
+  font-weight: bold;
+}
+
+// Global styles
+body {
+  font-family: $font-family;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+}
+
+// Navbar
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: $hero-bg-color; // Updated to match hero section
+  color: $nav-text-color;
+
+  .logo {
+    img {
+      max-height: 100px;
+      // Adjust the max-height according to your needs
+    }
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+
+    li {
+      margin-left: 20px;
+
+      a {
+        color: $nav-text-color;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Hero Section
+.hero {
+  display: flex;
+  align-items: center;
+  padding: 50px 30px;
+  background-color: $hero-bg-color;
+
+  .hero-content {
+    flex: 1;
+    
+    h1 {
+      @include title-big;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: $font-size-medium;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      .btn {
+        @include button-style($primary-color);
+        margin-right: 10px;
+        border-radius: 5px;
+
+        &.btn-secondary {
+          @include button-style($secondary-color);
+        }
+
+        &.btn-tertiary {
+          @include button-style($tertiary-color);
+        }
+      }
+    }
+  }
+
+  .hero-image {
+    flex: 1;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+// Image Grid
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 30px;
+    background-color: $grid-bg-color;
+  
+    .grid-item {
+      background-color: $grid-bg-color;
+      padding: 10px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 500px; // Altezza fissa per tutte le immagini
+  
+      img {
+        max-width: 100%;
+        height: 100%; // Occupa tutta l'altezza del contenitore
+        object-fit: cover; // Mantieni l'aspetto dell'immagine senza distorsioni
+      }
+    }
+  }
+  
