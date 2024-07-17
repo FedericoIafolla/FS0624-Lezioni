@@ -82,6 +82,7 @@ body {
   display: flex;
   align-items: center;
   padding: 50px 30px;
+  margin-bottom: -150px;
   background-color: $hero-bg-color;
 
   .hero-content {
@@ -128,7 +129,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    padding: 30px;
+    padding-top: 80px;
     background-color: $grid-bg-color;
   
     .grid-item {
