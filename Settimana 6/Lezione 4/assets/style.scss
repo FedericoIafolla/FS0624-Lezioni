@@ -1,0 +1,32 @@
+// Sovrascrive le variabili di Bootstrap
+$primary: #7550FE; // Colore primario
+$success: #1ACB98; // Colore di successo
+
+// Include Bootstrap per utilizzare le variabili sovrascritte
+@import 'scss/bootstrap.scss';
+
+// Stili personalizzati
+.hero {
+    background-color: $primary; // Sfondo della sezione hero
+    color: white; // Colore del testo nella sezione hero
+    padding: 50px 0; // Padding della sezione hero
+
+    img {
+        width: 100%; // Larghezza dell'immagine al 100% del contenitore
+        height: auto; // Altezza automatica
+        max-height: 500px; // Altezza massima dell'immagine
+        object-fit: cover; // Assicura che l'immagine copra completamente il contenitore senza distorsioni
+    }
+}
+
+.btn-browse {
+    background-color: $success; // Sfondo del bottone Browse Courses
+    color: white; // Colore del testo del bottone Browse Courses
+    border-radius: 5px; // Raggio dei bordi del bottone
+}
+
+.btn-instructor {
+    background-color: white; // Sfondo del bottone Are You Instructor?
+    color: $primary; // Colore del testo del bottone Are You Instructor?
+    border-radius: 5px; // Raggio dei bordi del bottone
+}
