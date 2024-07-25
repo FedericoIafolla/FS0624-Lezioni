@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pexels Image Loader</title>
+    <link rel="stylesheet" href="/CSS/style.css">
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="searchQuery" placeholder="Search for images...">
+        <button id="searchButton">Search</button>
+    </div>
+    <div class="buttons-container">
+        <button id="loadImages">Load Images</button>
+        <button id="loadSecondaryImages">Load Secondary Images</button>
+    </div>
+    <div id="imagesContainer" class="images-container"></div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <img id="modalImage" src="" alt="Image">
+        </div>
+    </div>
+    <script src="/Js/script.js"></script>
+</body>
+</html>
