@@ -1,0 +1,22 @@
+[
+    {
+        "title": "The Hobbit",
+        "img": "https://cdn.kobo.com/book-images/a821b502-0d07-4921-ac14-e431625d04e7/1200/1200/False/the-hobbit-illustrated-by-alan-lee.jpg",
+        "price": "10.99"
+    },
+    {
+        "title": "Harry Potter",
+        "img": "https://cdn.kobo.com/book-images/6750d058-29cb-4626-9c12-a62e816a80cc/1200/1200/False/harry-potter-and-the-philosopher-s-stone-3.jpg",
+        "price": "12.99"
+    },
+    {
+        "title": "It",
+        "img": "https://m.media-amazon.com/images/I/61pjyMrRCSL._AC_UF1000,1000_QL80_.jpg",
+        "price": "14.99"
+    },
+    {
+        "title": "Alan Wake",
+        "img": "https://m.media-amazon.com/images/I/61WwYMkaPqL._AC_UF1000,1000_QL80_.jpg",
+        "price": "9.99"
+    }
+]
