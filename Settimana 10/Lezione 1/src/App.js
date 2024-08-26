@@ -5,6 +5,8 @@ import MyFooter from './components/MyFooter';
 import Welcome from './components/Welcome';
 import BookList from './components/BookList';
 import fantasyBooks from './data/fantasy.json'; // Importa uno dei file JSON
+import './App.css'; // Assicurati che questo import esista
+
 
 function App() {
   return (

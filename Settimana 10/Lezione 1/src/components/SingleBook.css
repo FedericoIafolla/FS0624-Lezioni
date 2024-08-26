@@ -1,44 +1,17 @@
-/* src/styles/SingleBook.css */
-.book-card {
-    border: 4px solid #acacac; /* Bordi della card (blu in questo caso) */
-    border-radius: 10px; /* Angoli arrotondati per la card */
-    overflow: hidden; /* Evita che il contenuto ecceda la card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombreggiatura leggera */
-    transition: transform 0.2s, box-shadow 0.2s; /* Transizioni per l'effetto hover */
-    margin-bottom: 20px; /* Spazio tra le card */
-    cursor: pointer; /* Cambia il cursore al passaggio del mouse */
-  }
-  
-  .book-card:hover {
-    transform: scale(1.05); /* Ingrandisce leggermente la card al passaggio del mouse */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta l'ombreggiatura al passaggio del mouse */
-  }
-  
-  .img-container {
-    padding: 4px; /* Crea uno spazio interno per visualizzare i bordi della card */
-    background-color: white; /* Sfondo bianco per creare contrasto con il bordo */
-  }
-  
-  .book-card-img {
-    width: 100%; /* L'immagine occupa tutta la larghezza della card */
-    height: 300px; /* Altezza fissa per mantenere uniformità */
-    object-fit: contain; /* Mantiene le proporzioni senza ritagliare l'immagine */
-  }
-  
-  .book-card-body {
-    background-color: #ffffff; /* Sfondo blu per il testo */
-    color: rgb(0, 0, 0); /* Testo bianco */
-    padding: 15px; /* Spazio interno per il testo */
-    text-align: center; /* Centra il testo */
-  }
-  
-  .book-card-body h5 {
-    margin: 0; /* Elimina margini superflui */
-    font-size: 1.2rem; /* Dimensione del testo leggermente più grande */
-  }
-  
-  /* Aggiunge un bordo rosso quando la card è selezionata */
-  .selected {
-    border: 4px solid red;
-  }
-  
+.single-book-card {
+  border-radius: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.single-book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.single-book-card.selected {
+  border: 3px solid red;
+  box-shadow: 0px 8px 16px rgba(255, 0, 0, 0.4);
+}

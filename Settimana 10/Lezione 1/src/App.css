@@ -50,3 +50,10 @@
   color: red;
   font-size: 18px;
 }
+
+body {
+  background-color: #f3f3f3; /* Grigio molto chiaro */
+  margin: 0; /* Rimuovi il margine predefinito del browser */
+  padding: 0; /* Rimuovi il padding predefinito del browser */
+  font-family: Arial, sans-serif; /* Font di base per coerenza */
+}

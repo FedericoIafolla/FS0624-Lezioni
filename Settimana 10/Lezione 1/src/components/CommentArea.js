@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import CommentsList from './CommentsList';
 import AddComment from './AddComment';
-import Loading from './Loading';
-import Error from './Error';
 
 class CommentArea extends Component {
   state = {
     comments: [],
-    isLoading: false,
-    error: null,
   };
 
-  componentDidMount() {
-    this.fetchComments();
+  componentDidUpdate(prevProps) {
+    if (prevProps.bookId !== this.props.bookId) {
+      this.fetchComments();
+    }
   }
 
   fetchComments = async () => {
-    this.setState({ isLoading: true, error: null });
     try {
       const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${this.props.bookId}`, {
         headers: {
@@ -25,17 +22,16 @@ class CommentArea extends Component {
       });
       if (response.ok) {
         const data = await response.json();
-        this.setState({ comments: data, isLoading: false });
+        this.setState({ comments: data });
       } else {
-        throw new Error("Failed to fetch comments");
+        console.log("Error fetching comments");
       }
     } catch (error) {
-      this.setState({ error: error.message, isLoading: false });
+      console.log(error);
     }
   };
 
-  deleteComment = async (commentId) => {
-    this.setState({ isLoading: true, error: null });
+  handleDelete = async (commentId) => {
     try {
       const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${commentId}`, {
         method: 'DELETE',
@@ -44,23 +40,19 @@ class CommentArea extends Component {
         },
       });
       if (response.ok) {
-        this.fetchComments(); // Ricarica i commenti dopo eliminazione
+        this.fetchComments(); // Ricarica i commenti dopo la cancellazione
       } else {
-        throw new Error("Failed to delete comment");
+        console.log("Failed to delete comment");
       }
     } catch (error) {
-      this.setState({ error: error.message, isLoading: false });
+      console.log(error);
     }
   };
 
   render() {
-    const { isLoading, error, comments } = this.state;
-
     return (
       <div className="comment-area">
-        {isLoading && <Loading />}
-        {error && <Error message={error} />}
-        <CommentsList comments={comments} onDelete={this.deleteComment} />
+        <CommentsList comments={this.state.comments} onDelete={this.handleDelete} />
         <AddComment bookId={this.props.bookId} fetchComments={this.fetchComments} />
       </div>
     );

@@ -1,66 +1,98 @@
-// src/components/BookList.js
-import React, { useState } from 'react';
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Row, Col, Container, Form, FormControl } from 'react-bootstrap';
 import SingleBook from './SingleBook';
-import fantasyBooks from '../data/fantasy.json';
-import horrorBooks from '../data/horror.json';
-import historyBooks from '../data/history.json';
-import romanceBooks from '../data/romance.json';
-import scifiBooks from '../data/scifi.json';
+import CommentArea from './CommentArea';
+import './BookList.css';  // Importa un file CSS per lo stile personalizzato
 
-const genres = {
-  Fantasy: fantasyBooks,
-  Horror: horrorBooks,
-  History: historyBooks,
-  Romance: romanceBooks,
-  SciFi: scifiBooks,
-};
-
-const BookList = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedGenre, setSelectedGenre] = useState('Fantasy'); // Predefinito su 'Fantasy'
-
-  const handleGenreChange = (e) => {
-    setSelectedGenre(e.target.value);
+class BookList extends Component {
+  state = {
+    searchQuery: '',
+    selectedGenre: 'Tutti',
+    selectedBookAsin: null,
   };
 
-  // Filtra i libri in base al genere selezionato
-  const filteredBooks = genres[selectedGenre].filter((book) =>
-    book.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  handleSearch = (event) => {
+    this.setState({ searchQuery: event.target.value });
+  };
 
-  return (
-    <Container>
-      <Form.Group controlId="searchBar">
-        <Form.Label>Search for a book</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Type to search"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </Form.Group>
+  handleGenreChange = (event) => {
+    this.setState({ selectedGenre: event.target.value });
+  };
 
-      <Form.Group controlId="genreSelect">
-        <Form.Label>Select Genre</Form.Label>
-        <Form.Select value={selectedGenre} onChange={handleGenreChange}>
-          <option value="Fantasy">Fantasy</option>
-          <option value="Horror">Horror</option>
-          <option value="History">History</option>
-          <option value="Romance">Romance</option>
-          <option value="SciFi">Sci-Fi</option>
-        </Form.Select>
-      </Form.Group>
+  handleBookSelect = (asin) => {
+    this.setState({ selectedBookAsin: asin });
+  };
 
-      <Row>
-        {filteredBooks.map((book, index) => (
-          <Col key={index} md={4} className="my-3">
-            <SingleBook book={book} />
+  render() {
+    const { books } = this.props;
+    const { searchQuery, selectedGenre } = this.state;
+
+    const filteredBooks = books
+      .filter((book) =>
+        selectedGenre === 'Tutti' || book.category.toLowerCase() === selectedGenre.toLowerCase()
+      )
+      .filter((book) => book.title.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    return (
+      <Container>
+        <Row className="mb-4 align-items-center">
+          {/* Search bar */}
+          <Col md={6}>
+            <FormControl
+              type="text"
+              placeholder="Cerca un libro..."
+              value={this.state.searchQuery}
+              onChange={this.handleSearch}
+              className="custom-search-bar"
+            />
           </Col>
-        ))}
-      </Row>
-    </Container>
-  );
-};
+
+          {/* Dropdown per il filtro dei generi */}
+          <Col md={6}>
+            <Form.Control
+              as="select"
+              value={this.state.selectedGenre}
+              onChange={this.handleGenreChange}
+              className="custom-dropdown"
+            >
+              <option>Tutti</option>
+              <option>Fantasy</option>
+              <option>Horror</option>
+              <option>Romance</option>
+              <option>Scifi</option>
+              {/* Aggiungi altri generi se necessario */}
+            </Form.Control>
+          </Col>
+        </Row>
+
+        <Row>
+          {/* Colonna sinistra con la griglia dei libri */}
+          <Col md={8} className="book-list">
+            <Row>
+              {filteredBooks.map((book) => (
+                <Col key={book.asin} md={6} lg={4} className="mb-4">
+                  <SingleBook
+                    book={book}
+                    selectedBookAsin={this.state.selectedBookAsin}
+                    onBookSelect={this.handleBookSelect}
+                  />
+                </Col>
+              ))}
+            </Row>
+          </Col>
+
+          {/* Colonna destra con i commenti */}
+          <Col md={4} className="comment-area">
+            {this.state.selectedBookAsin ? (
+              <CommentArea bookId={this.state.selectedBookAsin} />
+            ) : (
+              <div className="placeholder-text">Seleziona un libro per visualizzare i commenti</div>
+            )}
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+}
 
 export default BookList;

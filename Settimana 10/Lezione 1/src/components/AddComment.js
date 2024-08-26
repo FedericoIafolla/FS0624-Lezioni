@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import './CommentArea.css'; // Importa il CSS aggiornato
 
 class AddComment extends Component {
   state = {
     comment: "",
     rate: 1,
-    author: "Anonymous", // Un author statico per esempio
+    author: "Anonymous",
   };
 
   handleInputChange = (event) => {
@@ -22,8 +23,6 @@ class AddComment extends Component {
       elementId: this.props.bookId,
     };
 
-    console.log("Submitting comment:", newComment); // Debug: mostra i dati del commento
-
     try {
       const response = await fetch("https://striveschool-api.herokuapp.com/api/comments/", {
         method: "POST",
@@ -39,13 +38,10 @@ class AddComment extends Component {
         this.props.fetchComments(); // Ricarica i commenti
         this.setState({ comment: "", rate: 1 }); // Resetta il form
       } else {
-        const errorData = await response.json();
-        console.error("Failed to add comment:", response.status, response.statusText, errorData);
-        alert("Failed to add comment: " + errorData.message);
+        alert("Failed to add comment");
       }
     } catch (error) {
-      console.error("Error in submitComment:", error);
-      alert("Error: " + error.message);
+      console.log(error);
     }
   };
 
@@ -78,7 +74,7 @@ class AddComment extends Component {
             <option>5</option>
           </Form.Control>
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button className="btn-submit" type="submit">
           Submit
         </Button>
       </Form>

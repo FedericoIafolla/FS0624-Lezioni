@@ -1,42 +1,19 @@
-// src/components/SingleBook.js
-import React, { Component } from 'react';
+import React from 'react';
 import { Card } from 'react-bootstrap';
-import CommentArea from './CommentArea'; // Importa CommentArea
-import './SingleBook.css';
+import './SingleBook.css';  // Importa un file CSS per le personalizzazioni stilistiche
 
-class SingleBook extends Component {
-  state = {
-    selected: false,
-  };
-
-  toggleSelected = () => {
-    this.setState({ selected: !this.state.selected });
-  };
-
-  render() {
-    const { book } = this.props;
-    return (
-      <>
-        <Card
-          onClick={this.toggleSelected}
-          className={`book-card ${this.state.selected ? 'selected' : ''}`}
-        >
-          <div className="img-container">
-            <Card.Img
-              variant="top"
-              src={book.img}
-              className="book-card-img"
-            />
-          </div>
-          <Card.Body className="book-card-body">
-            <Card.Title>{book.title}</Card.Title>
-          </Card.Body>
-        </Card>
-        {/* Mostra CommentArea solo se il libro è selezionato */}
-        {this.state.selected && <CommentArea bookId={book.asin} />}
-      </>
-    );
-  }
-}
+const SingleBook = ({ book, selectedBookAsin, onBookSelect }) => {
+  return (
+    <Card
+      onClick={() => onBookSelect(book.asin)}
+      className={`single-book-card ${selectedBookAsin === book.asin ? 'selected' : ''}`}
+    >
+      <Card.Img variant="top" src={book.img} className="book-image" />
+      <Card.Body>
+        <Card.Title className="book-title">{book.title}</Card.Title>
+      </Card.Body>
+    </Card>
+  );
+};
 
 export default SingleBook;
