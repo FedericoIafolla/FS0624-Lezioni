@@ -1,0 +1,28 @@
+.comment-area .btn-delete {
+  background-color: #ff4444 !important; /* Colore rosso per il bottone Delete */
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px; /* Arrotondamento simile agli altri bottoni */
+  font-weight: bold;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.comment-area .btn-delete:hover {
+  background-color: #ff6666 !important; /* Colore più chiaro al passaggio del mouse */
+}
+
+/* Assicurati che i bottoni di tipo "submit" abbiano uno stile diverso */
+.comment-area .btn-submit {
+  background-color: #2b74af; /* Colore blu per il bottone Submit */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.comment-area .btn-submit:hover {
+  background-color: #266497; /* Colore blu scuro al passaggio del mouse */
+}
