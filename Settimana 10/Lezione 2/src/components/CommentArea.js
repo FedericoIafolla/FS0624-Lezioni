@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import CommentsList from './CommentsList';
 import AddComment from './AddComment';
 
 const CommentArea = ({ bookId }) => {
   const [comments, setComments] = useState([]);
 
-
-  const fetchComments = async () => {
+  // Definiamo fetchComments come funzione memoizzata usando useCallback
+  const fetchComments = useCallback(async () => {
     try {
       const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${bookId}`, {
         headers: {
@@ -17,13 +17,14 @@ const CommentArea = ({ bookId }) => {
         const data = await response.json();
         setComments(data);
       } else {
-        console.log("Error fetching comments");
+        console.error("Error fetching comments");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
-  };
+  }, [bookId]); // Aggiungiamo bookId come dipendenza
 
+  // Funzione per gestire la cancellazione di un commento
   const handleDelete = async (commentId) => {
     try {
       const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${commentId}`, {
@@ -35,18 +36,19 @@ const CommentArea = ({ bookId }) => {
       if (response.ok) {
         fetchComments(); // Ricarica i commenti dopo la cancellazione
       } else {
-        console.log("Failed to delete comment");
+        console.error("Failed to delete comment");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
+  // UseEffect per caricare i commenti quando bookId cambia
   useEffect(() => {
     if (bookId) {
       fetchComments();
     }
-  }, [bookId]);
+  }, [bookId, fetchComments]); // Aggiungiamo fetchComments come dipendenza
 
   return (
     <div className="comment-area">
