@@ -1,26 +1,27 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import './CommentArea.css'; // Importa il CSS aggiornato
 
-class AddComment extends Component {
-  state = {
+const AddComment = ({ bookId, fetchComments }) => {
+  const [commentData, setCommentData] = useState({
     comment: "",
     rate: 1,
     author: "Anonymous",
-  };
+  });
 
-  handleInputChange = (event) => {
+
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    setCommentData({ ...commentData, [name]: value });
   };
 
-  submitComment = async (event) => {
+  const submitComment = async (event) => {
     event.preventDefault();
 
     const newComment = {
-      comment: this.state.comment,
-      rate: this.state.rate,
-      elementId: this.props.bookId,
+      comment: commentData.comment,
+      rate: commentData.rate,
+      elementId: bookId,
     };
 
     try {
@@ -35,8 +36,8 @@ class AddComment extends Component {
 
       if (response.ok) {
         alert("Comment added!");
-        this.props.fetchComments(); // Ricarica i commenti
-        this.setState({ comment: "", rate: 1 }); // Resetta il form
+        fetchComments(); // Ricarica i commenti
+        setCommentData({ comment: "", rate: 1 }); // Resetta il form
       } else {
         alert("Failed to add comment");
       }
@@ -45,41 +46,40 @@ class AddComment extends Component {
     }
   };
 
-  render() {
-    return (
-      <Form onSubmit={this.submitComment}>
-        <Form.Group>
-          <Form.Label>Comment</Form.Label>
-          <Form.Control
-            type="text"
-            name="comment"
-            value={this.state.comment}
-            onChange={this.handleInputChange}
-            placeholder="Write your comment here"
-            required
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Rating</Form.Label>
-          <Form.Control
-            as="select"
-            name="rate"
-            value={this.state.rate}
-            onChange={this.handleInputChange}
-          >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </Form.Control>
-        </Form.Group>
-        <Button className="btn-submit" type="submit">
-          Submit
-        </Button>
-      </Form>
-    );
-  }
-}
+  return (
+    <Form onSubmit={submitComment}>
+      <Form.Group>
+        <Form.Label>Comment</Form.Label>
+        <Form.Control
+          type="text"
+          name="comment"
+          value={commentData.comment}
+          onChange={handleInputChange}
+          placeholder="Write your comment here"
+          required
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Rating</Form.Label>
+        <Form.Control
+          as="select"
+          name="rate"
+          value={commentData.rate}
+          onChange={this.handleInputChange}
+        >
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </Form.Control>
+      </Form.Group>
+      <Button className="btn-submit" type="submit">
+        Submit
+      </Button>
+    </Form>
+  );
+};
+
 
 export default AddComment;
