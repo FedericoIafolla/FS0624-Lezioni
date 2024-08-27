@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import './CommentArea.css'; // Importa il CSS aggiornato
+import './CommentArea.css';
 
 const AddComment = ({ bookId, fetchComments }) => {
   const [commentData, setCommentData] = useState({
@@ -36,8 +36,8 @@ const AddComment = ({ bookId, fetchComments }) => {
 
       if (response.ok) {
         alert("Comment added!");
-        fetchComments(); // Ricarica i commenti
-        setCommentData({ comment: "", rate: 1 }); // Resetta il form
+        fetchComments();
+        setCommentData({ comment: "", rate: 1 });
       } else {
         alert("Failed to add comment");
       }

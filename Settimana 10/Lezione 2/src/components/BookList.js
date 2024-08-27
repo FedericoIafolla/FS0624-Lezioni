@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col, Container, Form, FormControl } from 'react-bootstrap';
 import SingleBook from './SingleBook';
 import CommentArea from './CommentArea';
-import './BookList.css';  // Importa un file CSS per lo stile personalizzato
+import './BookList.css';
 
 const BookList = ({ books }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -40,7 +40,6 @@ const BookList = ({ books }) => {
           />
         </Col>
 
-        {/* Dropdown per il filtro dei generi */}
         <Col md={6}>
           <Form.Control
             as="select"
@@ -53,13 +52,11 @@ const BookList = ({ books }) => {
             <option>Horror</option>
             <option>Romance</option>
             <option>Scifi</option>
-            {/* Aggiungi altri generi se necessario */}
           </Form.Control>
         </Col>
       </Row>
 
       <Row>
-        {/* Colonna sinistra con la griglia dei libri */}
         <Col md={8} className="book-list">
           <Row>
             {filteredBooks.map((book) => (
@@ -74,7 +71,6 @@ const BookList = ({ books }) => {
           </Row>
         </Col>
 
-        {/* Colonna destra con i commenti */}
         <Col md={4} className="comment-area">
           {this.state.selectedBookAsin ? (
             <CommentArea bookId={selectedBookAsin} />
