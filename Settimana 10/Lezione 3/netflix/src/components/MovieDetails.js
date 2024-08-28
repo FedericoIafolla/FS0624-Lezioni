@@ -183,15 +183,17 @@ const MovieDetails = () => {
                                                 required
                                             />
                                         </div>
-                                        <button type="submit" className="save">Save</button>
-                                        <button type="button" className="cancel" onClick={() => setEditingCommentId(null)}>Cancel</button>
+                                        <div className="comment-form-buttons">
+                                            <button type="submit" className="save">Save</button>
+                                            <button type="button" className="cancel" onClick={() => setEditingCommentId(null)}>Cancel</button>
+                                        </div>
                                     </form>
                                 ) : (
                                     <>
                                         <p className="comment-author">{comment.comment}</p>
                                         <p className="comment-rating">Rating: {comment.rate}</p>
-                                        <button onClick={() => startEditing(comment)}>Update</button>
-                                        <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+                                        <button className="update-btn" onClick={() => startEditing(comment)}>Update</button>
+                                        <button className="delete-btn" onClick={() => handleDeleteComment(comment._id)}>Delete</button>
                                     </>
                                 )}
                             </div>
@@ -223,7 +225,6 @@ const MovieDetails = () => {
             )}
         </div>
     );
-
-}
+};
 
 export default MovieDetails;

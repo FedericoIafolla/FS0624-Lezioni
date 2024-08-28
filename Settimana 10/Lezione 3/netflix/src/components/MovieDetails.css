@@ -40,6 +40,7 @@
   margin-top: 40px;
   width: 100%;
   max-width: 800px;
+  text-align: center;
 }
 
 .comment-card {
@@ -111,38 +112,49 @@ button {
   transition: opacity 0.3s ease, transform 0.3s ease; /* Transizioni per hover e focus */
 }
 
-/* Stili specifici per le classi dei pulsanti */
-.update-btn {
+/* Stili specifici per i bottoni Update e Delete */
+.comment-card .update-btn,
+.comment-card .delete-btn {
   background-color: #212121; /* Sfondo scuro */
   border: 2px solid #ffffff; /* Bordo bianco */
   color: #ffffff; /* Testo bianco */
+  padding: 6px 18px; /* Padding */
+  cursor: pointer;
+  font-size: 16px; /* Dimensione del testo */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transizioni */
+  margin: 0 10px; /* Spazio orizzontale tra i bottoni */
 }
 
-.cancel-btn {
+/* Aggiungi uno spazio tra i bottoni Update e Delete */
+.comment-card .update-btn {
+  margin-right: 10px; /* Spazio a destra del pulsante Update */
+}
+
+/* Stili specifici per i bottoni Save e Cancel nella modalità di modifica */
+.comment-form-buttons {
+  display: flex;
+  justify-content: center; /* Centra i bottoni orizzontalmente */
+  gap: 10px; /* Spazio tra i bottoni */
+  margin-top: 10px; /* Spazio sopra i bottoni */
+}
+
+.comment-form-buttons button {
   background-color: #212121; /* Sfondo scuro */
   border: 2px solid #ffffff; /* Bordo bianco */
   color: #ffffff; /* Testo bianco */
+  padding: 6px 18px; /* Padding */
+  cursor: pointer;
+  font-size: 16px; /* Dimensione del testo */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transizioni */
 }
 
-.add-btn {
+/* Stili specifici per il pulsante Add Comment nella form di commento */
+.comment-form .add-comment {
   background-color: #212121; /* Sfondo scuro */
   border: 2px solid #ffffff; /* Bordo bianco */
   color: #ffffff; /* Testo bianco */
-}
-
-.delete-btn {
-  background-color: #212121; /* Sfondo scuro */
-  border: 2px solid #ffffff; /* Bordo bianco */
-  color: #ffffff; /* Testo bianco */
-}
-
-/* Margini per i pulsanti nella form */
-.comment-form-buttons button,
-.comment-actions button {
-  margin: 0 5px;
-}
-
-/* Spazio specifico tra i pulsanti Delete e Update */
-.comment-actions .update-btn {
-  margin-right: 20px; /* Spazio a destra del pulsante Update */
+  padding: 6px 18px; /* Aumenta leggermente il padding per renderli più grandi */
+  cursor: pointer;
+  font-size: 16px; /* Aumenta leggermente la dimensione del testo */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transizioni per hover e focus */
 }
