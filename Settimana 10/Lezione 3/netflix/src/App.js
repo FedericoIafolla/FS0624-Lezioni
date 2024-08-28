@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CustomNavbar from './components/Navbar';
 import Footer from './components/Footer';
 import FilmList from './components/FilmList';
-import Account from './components/Account'; 
+import Account from './components/Account';
+import TVShows from './components/TVShows'; // Assicurati di avere questo componente
+import MovieDetails from './components/MovieDetails'; // Importa il componente MovieDetails
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
               </>
             } />
             <Route path="/account" element={<Account />} />
+            <Route path="/tvshows" element={<TVShows />} /> {/* Aggiungi la rotta per TVShows */}
+            <Route path="/movie-details/:movieId" element={<MovieDetails />} /> {/* Aggiungi la rotta per MovieDetails */}
           </Routes>
         </main>
         <Footer />

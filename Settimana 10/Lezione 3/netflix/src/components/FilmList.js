@@ -3,11 +3,11 @@ import Slider from 'react-slick';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './FilmList.css'; 
-import { ClipLoader } from 'react-spinners'; 
+import './FilmList.css';
+import { ClipLoader } from 'react-spinners';
+import { Link } from 'react-router-dom';
 
 const API_KEY = '6953698b';
-
 
 const EXCLUDED_MOVIES = [
   'tt0073629',
@@ -24,17 +24,23 @@ function FilmList({ title, query }) {
   useEffect(() => {
     if (query) {
       setLoading(true);
+
       fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}&type=movie`)
-        .then(response => response.json())
+        .then(response => {
+          // Controlla se la risposta è in JSON
+          if (!response.headers.get('content-type')?.includes('application/json')) {
+            throw new Error('La risposta non è in formato JSON');
+          }
+          return response.json();
+        })
         .then(data => {
-          // Filtra i film da escludere
           if (data.Response === "True") {
             const filteredMovies = data.Search.filter(movie => !EXCLUDED_MOVIES.includes(movie.imdbID));
             setMovies(filteredMovies);
-            setLoading(false);
           } else {
             throw new Error(data.Error);
           }
+          setLoading(false);
         })
         .catch(err => {
           setError(err.message);
@@ -101,11 +107,13 @@ function FilmList({ title, query }) {
         <Slider {...settings}>
           {movies.map((movie) => (
             <div key={movie.imdbID} style={{ display: 'flex', justifyContent: 'center', padding: '0 5px' }}>
-              <img
-                src={movie.Poster}
-                alt={movie.Title}
-                style={{ width: '100%', height: '300px', objectFit: 'contain', borderRadius: '5px' }}
-              />
+              <Link to={`/movie-details/${movie.imdbID}`} style={{ textDecoration: 'none' }}>
+                <img
+                  src={movie.Poster}
+                  alt={movie.Title}
+                  style={{ width: '100%', height: '300px', objectFit: 'contain', borderRadius: '5px' }}
+                />
+              </Link>
             </div>
           ))}
         </Slider>

@@ -1,0 +1,148 @@
+/* Stile generale della pagina dei dettagli del film */
+.movie-details-container {
+  color: #ffffff;
+  background-color: #212121; /* Netflix dark background */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.movie-details-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.movie-details-error {
+  text-align: center;
+  color: #ff0000;
+}
+
+.movie-details-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movie-details-poster {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+}
+
+.movie-details-info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.movie-details-comments {
+  margin-top: 40px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.comment-card {
+  background-color: #333;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.comment-author {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.comment-rating {
+  font-size: 14px;
+  color: #f1c40f; /* Rating color */
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  max-width: 600px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  margin-bottom: 10px;
+  background-color: #222;
+  color: #fff;
+}
+
+.rating-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.rating-container label {
+  margin-bottom: 5px;
+}
+
+.rating-container input {
+  width: 60px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background-color: #222;
+  color: #fff;
+}
+
+/* Stile generale dei pulsanti */
+button {
+  background-color: #212121; /* Sfondo scuro */
+  border: 2px solid #ffffff; /* Bordo bianco */
+  color: #ffffff; /* Testo bianco */
+  padding: 6px 18px; /* Aumenta leggermente il padding per renderli più grandi */
+  cursor: pointer;
+  font-size: 16px; /* Aumenta leggermente la dimensione del testo */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transizioni per hover e focus */
+}
+
+/* Stili specifici per le classi dei pulsanti */
+.update-btn {
+  background-color: #212121; /* Sfondo scuro */
+  border: 2px solid #ffffff; /* Bordo bianco */
+  color: #ffffff; /* Testo bianco */
+}
+
+.cancel-btn {
+  background-color: #212121; /* Sfondo scuro */
+  border: 2px solid #ffffff; /* Bordo bianco */
+  color: #ffffff; /* Testo bianco */
+}
+
+.add-btn {
+  background-color: #212121; /* Sfondo scuro */
+  border: 2px solid #ffffff; /* Bordo bianco */
+  color: #ffffff; /* Testo bianco */
+}
+
+.delete-btn {
+  background-color: #212121; /* Sfondo scuro */
+  border: 2px solid #ffffff; /* Bordo bianco */
+  color: #ffffff; /* Testo bianco */
+}
+
+/* Margini per i pulsanti nella form */
+.comment-form-buttons button,
+.comment-actions button {
+  margin: 0 5px;
+}
+
+/* Spazio specifico tra i pulsanti Delete e Update */
+.comment-actions .update-btn {
+  margin-right: 20px; /* Spazio a destra del pulsante Update */
+}
