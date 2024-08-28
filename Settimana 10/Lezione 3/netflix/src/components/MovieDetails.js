@@ -5,7 +5,6 @@ import { ClipLoader } from 'react-spinners';
 
 // La tua API Key
 const API_KEY = '6953698b';
-const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmNmMjA2MjAwOGQxMDAwMTVkZDNiNGUiLCJpYXQiOjE3MjQ4NTAyNzQsImV4cCI6MTcyNjA1OTg3NH0.KFK9aex6ISFoXbsSZTo8JIeub5YxMMR-UgydUsklpAs';
 
 const MovieDetails = () => {
     const { movieId } = useParams();
