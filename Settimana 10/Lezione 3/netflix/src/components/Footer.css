@@ -1,0 +1,54 @@
+/* Footer.css */
+.footer {
+    background-color: #212121;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .footer-icons {
+    margin-bottom: 20px;
+  }
+  
+  .footer-icons svg {
+    margin: 0 10px;
+    vertical-align: middle;
+    width: 1.5em; 
+    height: 1.5em;
+  }
+  
+  
+  .footer-columns {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .footer-columns div {
+    margin: 0 10px;
+  }
+  
+  .footer-columns p {
+    margin: 5px 0;
+  }
+  
+  .footer-button {
+    margin-bottom: 20px;
+  }
+  
+  .footer-button button {
+    background-color: #555;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .footer-copy {
+    margin-top: 20px;
+  }
+  
+  .footer-copy p {
+    margin: 0;
+  }
+  
