@@ -67,7 +67,7 @@ const BookList = ({ books }) => {
                   book={book}
                   selectedBookAsin={selectedBookAsin}
                   onBookSelect={handleBookSelect}
-                  data-testid={`book-card-${book.asin}`} // Aggiunto data-testid per la scheda libro
+                  data-testid={`book-card-${book.asin}`} // Usa asin per data-testid
                 />
               </Col>
             ))}
@@ -76,7 +76,7 @@ const BookList = ({ books }) => {
 
         <Col md={4} className="comment-area">
           {selectedBookAsin ? (
-            <CommentArea bookId={selectedBookAsin} />
+            <CommentArea bookId={selectedBookAsin} data-testid="comment-area" /> // Aggiungi data-testid per CommentArea
           ) : (
             <div className="placeholder-text">Seleziona un libro per visualizzare i commenti</div>
           )}

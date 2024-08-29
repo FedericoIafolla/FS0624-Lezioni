@@ -2,6 +2,9 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App from './App';
 import fantasyBooks from './data/fantasy.json';
 
+// Trova un asin esistente per i test
+const getTestBookAsin = () => fantasyBooks[0].asin; // Usa il primo asin per i test
+
 // Testa se il componente Welcome viene montato correttamente
 test('renders Welcome component', () => {
   render(<App />);
@@ -20,8 +23,9 @@ test('renders correct number of book cards', () => {
 test('renders CommentArea component when a book is selected', async () => {
   render(<App />);
 
-  // Trova il primo libro
-  const firstBook = await screen.findByTestId('book-card-0'); // Assicurati che questo corrisponda all'ID corretto
+  // Usa un asin esistente per i test
+  const testAsin = getTestBookAsin();
+  const firstBook = await screen.findByTestId(`book-card-${testAsin}`);
   fireEvent.click(firstBook);
 
   // Attendere che CommentArea venga renderizzato
@@ -48,9 +52,12 @@ test('filters books correctly based on genre', async () => {
 });
 
 // Testa se il colore del bordo cambia quando un libro viene selezionato
-test('changes border color when a book is selected', () => {
+test('changes border color when a book is selected', async () => {
   render(<App />);
-  const firstBook = screen.getByTestId('book-card-0');
+
+  // Usa un asin esistente per i test
+  const testAsin = getTestBookAsin();
+  const firstBook = await screen.findByTestId(`book-card-${testAsin}`);
   fireEvent.click(firstBook);
 
   // Assicurati che il bordo del libro selezionato sia cambiato
@@ -58,11 +65,13 @@ test('changes border color when a book is selected', () => {
 });
 
 // Testa se il colore del bordo del libro precedentemente selezionato ritorna normale quando un nuovo libro è selezionato
-test('returns border color of previously selected book to normal when a new book is selected', () => {
+test('returns border color of previously selected book to normal when a new book is selected', async () => {
   render(<App />);
 
-  const firstBook = screen.getByTestId('book-card-0');
-  const secondBook = screen.getByTestId('book-card-1');
+  // Usa asin esistenti per i test
+  const [firstAsin, secondAsin] = [getTestBookAsin(), fantasyBooks[1].asin];
+  const firstBook = await screen.findByTestId(`book-card-${firstAsin}`);
+  const secondBook = await screen.findByTestId(`book-card-${secondAsin}`);
 
   fireEvent.click(firstBook);
   expect(firstBook).toHaveStyle('border: 2px solid blue');
@@ -83,8 +92,9 @@ test('does not render SingleComment component when no book is selected', () => {
 test('loads and displays comments when a book with reviews is selected', async () => {
   render(<App />);
 
-  // Seleziona un libro con recensioni
-  const firstBook = await screen.findByTestId('book-card-0'); // Assicurati che questo corrisponda a un libro con recensioni
+  // Usa un asin esistente per i test
+  const testAsin = getTestBookAsin();
+  const firstBook = await screen.findByTestId(`book-card-${testAsin}`);
   fireEvent.click(firstBook);
 
   // Attendere che i commenti vengano caricati e visualizzati

@@ -10,7 +10,7 @@ const SingleBook = ({ book, selectedBookAsin, onBookSelect, 'data-testid': testI
     <Card
       onClick={() => onBookSelect(book.asin)}
       className={`single-book-card ${isSelected ? 'selected' : ''}`}
-      data-testid={testId}  // Applica il data-testid
+      data-testid={testId}  // Applica il data-testid basato sull'asin
       style={{
         border: isSelected ? '2px solid blue' : '1px solid black',  // Modifica il colore del bordo in base alla selezione
         cursor: 'pointer'

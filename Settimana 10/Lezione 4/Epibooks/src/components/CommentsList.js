@@ -5,12 +5,13 @@ import './CommentsList.css'; // Assicurati che il CSS sia importato correttament
 
 const CommentsList = ({ comments, onDelete }) => (
   <ListGroup>
-    {comments.map(comment => (
-      <ListGroup.Item key={comment._id} className="comment-list-item">
+    {comments.map((comment, index) => (
+      <ListGroup.Item key={comment._id} className="comment-list-item" data-testid={`comment-item-${index}`}>
         <SingleComment comment={comment} />
         <Button
           className="btn btn-danger btn-delete" // Applica la classe corretta
           onClick={() => onDelete(comment._id)}
+          data-testid={`delete-button-${comment._id}`}
         >
           Delete
         </Button>

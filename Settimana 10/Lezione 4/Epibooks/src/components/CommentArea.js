@@ -37,7 +37,7 @@ const CommentArea = ({ bookId }) => {
       });
 
       if (response.ok) {
-        fetchComments();
+        fetchComments(); // Ricarica i commenti dopo la cancellazione
       } else {
         console.error("Failed to delete comment:", response.status, response.statusText);
       }
@@ -51,8 +51,12 @@ const CommentArea = ({ bookId }) => {
   }, [bookId, fetchComments]);
 
   return (
-    <div className="comment-area">
-      <CommentsList comments={comments} onDelete={handleDelete} />
+    <div className="comment-area" data-testid="comment-area">
+      {comments.length > 0 ? (
+        <CommentsList comments={comments} onDelete={handleDelete} />
+      ) : (
+        <div>No comments available</div>
+      )}
       <AddComment bookId={bookId} fetchComments={fetchComments} />
     </div>
   );

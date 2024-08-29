@@ -35,18 +35,18 @@ const AddComment = ({ bookId, fetchComments }) => {
 
       if (response.ok) {
         alert("Comment added!");
-        fetchComments();
-        setCommentData({ comment: "", rate: 1 });
+        fetchComments(); // Ricarica i commenti dopo l'aggiunta
+        setCommentData({ comment: "", rate: 1 }); // Resetta il modulo
       } else {
         alert("Failed to add comment");
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error adding comment:", error);
     }
   };
 
   return (
-    <Form onSubmit={submitComment}>
+    <Form onSubmit={submitComment} data-testid="add-comment-form">
       <Form.Group>
         <Form.Label>Comment</Form.Label>
         <Form.Control
@@ -56,6 +56,7 @@ const AddComment = ({ bookId, fetchComments }) => {
           onChange={handleInputChange}
           placeholder="Write your comment here"
           required
+          data-testid="comment-input"
         />
       </Form.Group>
       <Form.Group>
@@ -64,7 +65,8 @@ const AddComment = ({ bookId, fetchComments }) => {
           as="select"
           name="rate"
           value={commentData.rate}
-          onChange={handleInputChange} // Corretto qui, senza 'this'
+          onChange={handleInputChange}
+          data-testid="rating-select"
         >
           <option>1</option>
           <option>2</option>
@@ -73,7 +75,7 @@ const AddComment = ({ bookId, fetchComments }) => {
           <option>5</option>
         </Form.Control>
       </Form.Group>
-      <Button className="btn-submit" type="submit">
+      <Button className="btn-submit" type="submit" data-testid="submit-button">
         Submit
       </Button>
     </Form>
