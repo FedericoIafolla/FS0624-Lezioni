@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavourite, removeFavourite } from '../redux/actions/favouritesActions';
@@ -14,11 +14,7 @@ const CompanySearchResults = () => {
 
   const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?company=";
 
-  useEffect(() => {
-    fetchJobs();
-  }, [company]);
-
-  const fetchJobs = async () => {
+  const fetchJobs = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(baseEndpoint + company);
@@ -33,7 +29,11 @@ const CompanySearchResults = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [company, baseEndpoint]);
+
+  useEffect(() => {
+    fetchJobs();
+  }, [fetchJobs]);
 
   const isFavourite = favourites.includes(company);
 
@@ -50,7 +50,11 @@ const CompanySearchResults = () => {
       <Row>
         <Col className="my-3">
           <h1 className="display-4">Job Postings for: {company}</h1>
-          <Button onClick={handleAddFavourite} className="mb-3" variant={isFavourite ? "danger" : "primary"}>
+          <Button
+            onClick={handleAddFavourite}
+            className="mb-3"
+            variant={isFavourite ? "danger" : "primary"}
+          >
             {isFavourite ? "Remove from Favourites" : "Add to Favourites"}
           </Button>
           {loading ? (
