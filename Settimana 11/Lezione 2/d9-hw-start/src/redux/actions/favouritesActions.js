@@ -1,6 +1,5 @@
-
-export const ADD_FAVOURITE = "ADD_FAVOURITE";
-export const REMOVE_FAVOURITE = "REMOVE_FAVOURITE";
+// src/redux/actions/favouritesActions.js
+import { ADD_FAVOURITE, REMOVE_FAVOURITE } from './actionTypes';
 
 export const addFavourite = (companyName) => ({
     type: ADD_FAVOURITE,

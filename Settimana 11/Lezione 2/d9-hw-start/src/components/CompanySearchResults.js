@@ -2,12 +2,13 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavourite, removeFavourite } from '../redux/actions/favouritesActions';
-import { Container, Row, Col, Button, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Button, Spinner, Alert } from 'react-bootstrap';
 import Job from './Job';
 
 const CompanySearchResults = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // Aggiunto per la gestione degli errori
   const { company } = useParams();
   const dispatch = useDispatch();
   const favourites = useSelector((state) => state.favourites);
@@ -16,16 +17,18 @@ const CompanySearchResults = () => {
 
   const fetchJobs = useCallback(async () => {
     setLoading(true);
+    setError(null); // Reset dell'errore
     try {
       const response = await fetch(baseEndpoint + company);
       if (response.ok) {
         const { data } = await response.json();
         setJobs(data);
       } else {
-        alert("Error fetching results");
+        throw new Error("Error fetching results");
       }
     } catch (error) {
       console.error("Error fetching jobs:", error);
+      setError(error.message); // Setta il messaggio di errore
     } finally {
       setLoading(false);
     }
@@ -57,20 +60,25 @@ const CompanySearchResults = () => {
           >
             {isFavourite ? "Remove from Favourites" : "Add to Favourites"}
           </Button>
-          {loading ? (
+          {loading && (
             <div className="text-center">
               <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
               </Spinner>
               <p>Loading details...</p>
             </div>
-          ) : jobs.length === 0 ? (
-            <p>No job postings available for this company.</p>
-          ) : (
-            jobs.map((jobData) => (
-              <Job key={jobData._id} data={jobData} />
-            ))
           )}
+          {error && (
+            <Alert variant="danger">
+              {error}
+            </Alert>
+          )}
+          {!loading && !error && jobs.length === 0 && (
+            <p>No job postings available for this company.</p>
+          )}
+          {!loading && !error && jobs.map((jobData) => (
+            <Job key={jobData._id} data={jobData} />
+          ))}
         </Col>
       </Row>
     </Container>
